@@ -96,16 +96,16 @@ def pregunta_03():
     # Se itera sobre diferentes valores de vecinos
     for i, k in enumerate(neighbors):
         # Cree un clasificador con k vecinos
-        knn = ____
+        knn = KNeighborsClassifier(n_neighbors=k)
 
         # Entrene el clasificador con los datos de entrenamiento
-        ____
+        knn.fit(X,y)
 
         # Calcule la precisión para el conjunto de datos de entrenamiento
-        train_accuracy[i] = knn.score(____, ____)
+        train_accuracy[i] = knn.score(X_train, y_train)
 
         # Calcule la precisión para el conjunto de datos de prueba
-        test_accuracy[i] = knn.score(____, ____)
+        test_accuracy[i] = knn.score(X_test, y_test)
 
     # Almacenamiento de los resultados como un dataframe
     df = pd.DataFrame(
