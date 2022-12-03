@@ -76,13 +76,14 @@ def pregunta_03():
 
     # Cargue el dataset digits
     digits = datasets.load_digits()
-
+    
     # Cree los vectors de características y de salida
     X = digits.data
     y = digits.target
 
     # Divida los datos de entrenamiento y prueba. Los conjuntos de datos están
     # estratificados. La semilla del generador de números aleatorios es 42.
+    # El tamaño del test es del 20%
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
@@ -99,13 +100,13 @@ def pregunta_03():
         knn = KNeighborsClassifier(n_neighbors=k)
 
         # Entrene el clasificador con los datos de entrenamiento
-        knn.fit(X,y)
+        knn.fit(X_train,y_train)
 
         # Calcule la precisión para el conjunto de datos de entrenamiento
-        train_accuracy[i] = knn.score(X_train, y_train)
+        train_accuracy[i] = knn.score(X_train,y_train)
 
         # Calcule la precisión para el conjunto de datos de prueba
-        test_accuracy[i] = knn.score(X_test, y_test)
+        test_accuracy[i] = knn.score(X_test,y_test)
 
     # Almacenamiento de los resultados como un dataframe
     df = pd.DataFrame(
